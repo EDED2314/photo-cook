@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>DSC_3615.JPG</filename>
+	<path>C:\Users\Eddie\Python Machine Learning\Tensorflow Object Detection\TFODCourse\Tensorflow\workspace\images\train\DSC_3615.JPG</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>180</width>
+		<height>120</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>beef</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>46</xmin>
+			<ymin>51</ymin>
+			<xmax>130</xmax>
+			<ymax>113</ymax>
+		</bndbox>
+	</object>
+</annotation>

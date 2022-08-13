@@ -19,4 +19,3 @@ def send(detections):
     return response
 
 
-print(send(['tomato']))
