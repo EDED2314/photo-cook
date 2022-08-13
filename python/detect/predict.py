@@ -1,6 +1,6 @@
-
 import tensorflow as tf
 import numpy as np
+detect_fn = tf.saved_model.load("detect/my_ssd_mobnet/export/saved_model")
 
 category_index = {1: {'id': 1, 'name': 'tomato'}, 2: {'id': 2, 'name': 'egg'}, 3: {'id': 3, 'name': 'potato'},
                   4: {'id': 4, 'name': 'broccoli'}, 5: {'id': 5, 'name': 'beef'}, 6: {'id': 6, 'name': 'chicken'}}
@@ -24,7 +24,7 @@ def ExtractBBoxes(bboxes, bclasses, bscores, im_width, im_height):
 
 def get_detections(IMAGE_PATH):
 
-    detect_fn = tf.saved_model.load("detect/my_ssd_mobnet/export/saved_model")
+
     image = tf.image.decode_image(open(IMAGE_PATH, 'rb').read(), channels=3)
     image = tf.image.resize(image, (180, 120))
     im_height, im_width, _ = image.shape
