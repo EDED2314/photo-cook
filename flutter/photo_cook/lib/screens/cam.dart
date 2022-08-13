@@ -1,8 +1,11 @@
-import 'package:camera/camera.dart';
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_cook/widgets/coolButtion.dart';
 import 'package:photo_cook/widgets/coolText.dart';
+import 'package:http/http.dart' as http;
 
 class CameraApp extends StatefulWidget {
   /// Default Constructor
@@ -40,6 +43,29 @@ class _CameraAppState extends State<CameraApp> {
                         imageFile = pickedImage;
                         picked = true;
                       });
+                    }
+                    try {
+                      http.MultipartRequest request =
+                          http.MultipartRequest('GET', Uri.parse("https://stackoverflow.com/questions/66579874/image-upload-in-flutter-using-http-post-method"));
+
+                      request.files.add(
+                        await http.MultipartFile.fromPath(
+                          'images',
+                          imageFile!.path,
+                        ),
+                      );
+                      http.StreamedResponse r = await request.send();
+                      print(r.statusCode);
+                      print(await r.stream.transform(utf8.decoder).join());
+                    } catch (error) {
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: coolText(
+                            text: error.toString(),
+                            fontSize: 5,
+                          ),
+                        ));
+                      }
                     }
                   } catch (e) {
                     imageFile = null;
