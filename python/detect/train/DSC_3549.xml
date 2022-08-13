@@ -1,0 +1,38 @@
+<annotation>
+	<folder>train</folder>
+	<filename>DSC_3549.JPG</filename>
+	<path>C:\Users\Eddie\Python Machine Learning\Tensorflow Object Detection\TFODCourse\Tensorflow\workspace\images\train\DSC_3549.JPG</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>180</width>
+		<height>120</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>potato</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>26</xmin>
+			<ymin>34</ymin>
+			<xmax>69</xmax>
+			<ymax>99</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>potato</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>111</xmin>
+			<ymin>27</ymin>
+			<xmax>174</xmax>
+			<ymax>113</ymax>
+		</bndbox>
+	</object>
+</annotation>

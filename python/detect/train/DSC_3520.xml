@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>DSC_3520.JPG</filename>
+	<path>C:\Users\Eddie\Python Machine Learning\Tensorflow Object Detection\TFODCourse\Tensorflow\workspace\images\train\DSC_3520.JPG</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>180</width>
+		<height>120</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>tomato</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>52</xmin>
+			<ymin>37</ymin>
+			<xmax>120</xmax>
+			<ymax>102</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>DSC_3539.JPG</filename>
+	<path>C:\Users\Eddie\Python Machine Learning\Tensorflow Object Detection\TFODCourse\Tensorflow\workspace\images\train\DSC_3539.JPG</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>180</width>
+		<height>120</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>egg</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>65</xmin>
+			<ymin>42</ymin>
+			<xmax>112</xmax>
+			<ymax>78</ymax>
+		</bndbox>
+	</object>
+</annotation>
