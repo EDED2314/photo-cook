@@ -6,4 +6,11 @@
     <orderEntry type="jdk" jdkName="Python 3.9 (photo-cooker)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/python/templates" />
+      </list>
+    </option>
+  </component>
 </module>
