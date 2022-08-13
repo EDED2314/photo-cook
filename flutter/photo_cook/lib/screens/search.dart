@@ -1,21 +1,18 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:photo_cook/widgets/coolButtion.dart';
 import 'package:photo_cook/widgets/coolText.dart';
 import 'package:http/http.dart' as http;
 
-class CameraApp extends StatefulWidget {
+class Search extends StatefulWidget {
   /// Default Constructor
-  const CameraApp({Key? key}) : super(key: key);
+  const Search({Key? key}) : super(key: key);
 
   @override
-  State<CameraApp> createState() => _CameraAppState();
+  State<Search> createState() => _Search();
 }
 
-class _CameraAppState extends State<CameraApp> {
-  XFile? imageFile;
+class _Search extends State<Search> {
   bool picked = false;
 
   @override
@@ -35,31 +32,15 @@ class _CameraAppState extends State<CameraApp> {
             ExpandedButton(
                 onPressed: () async {
                   try {
-                    final pickedImage = await ImagePicker()
-                        .pickImage(source: ImageSource.camera);
-                    if (pickedImage != null) {
-                      setState(() {
-                        imageFile = pickedImage;
-                        picked = true;
-                      });
-                    }
-
                     http.MultipartRequest request = http.MultipartRequest(
                         'GET',
                         Uri.parse(
                             "https://stackoverflow.com/questions/66579874/image-upload-in-flutter-using-http-post-method"));
 
-                    request.files.add(
-                      await http.MultipartFile.fromPath(
-                        'images',
-                        imageFile!.path,
-                      ),
-                    );
                     http.StreamedResponse r = await request.send();
                     print(r.statusCode);
                     print(await r.stream.transform(utf8.decoder).join());
                   } catch (e) {
-                    imageFile = null;
                     if (mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: coolText(
@@ -70,7 +51,7 @@ class _CameraAppState extends State<CameraApp> {
                     }
                   }
                 },
-                text: "Take Photo",
+                text: "Send",
                 flex: 2,
                 fontSize: 15,
                 width: 200),

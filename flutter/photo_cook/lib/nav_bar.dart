@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:photo_cook/screens/cam.dart';
 import 'package:photo_cook/screens/home_page.dart';
 import 'package:bottom_bar/bottom_bar.dart';
+import 'package:photo_cook/screens/search.dart';
 import 'package:photo_cook/widgets/coolText.dart';
 
 class Navbar extends StatefulWidget {
@@ -24,7 +25,7 @@ class _Navbar extends State<Navbar> {
         children: const [
           MyHomePage(),
           CameraApp(),
-          Center(child: Text("not implemented")),
+          Search(),
           Center(child: Text("not implemented")),
         ],
         onPageChanged: (index) {
