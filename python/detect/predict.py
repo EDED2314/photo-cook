@@ -1,4 +1,4 @@
-import os
+
 import tensorflow as tf
 import numpy as np
 
@@ -24,8 +24,7 @@ def ExtractBBoxes(bboxes, bclasses, bscores, im_width, im_height):
 
 def get_detections(IMAGE_PATH):
 
-    detect_fn = tf.saved_model.load("my_ssd_mobnet/export/saved_model")
-
+    detect_fn = tf.saved_model.load("detect/my_ssd_mobnet/export/saved_model")
     image = tf.image.decode_image(open(IMAGE_PATH, 'rb').read(), channels=3)
     image = tf.image.resize(image, (180, 120))
     im_height, im_width, _ = image.shape
