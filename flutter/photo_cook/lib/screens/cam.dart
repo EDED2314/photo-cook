@@ -65,6 +65,9 @@ class _CameraAppState extends State<CameraApp> {
           ),
         ));
       }
+      setState(() {
+        picked = false;
+      });
     }
   }
 
@@ -73,30 +76,50 @@ class _CameraAppState extends State<CameraApp> {
   Data cool = const Data(detections: ["Loading"], results: ["Loading"]);
   @override
   Widget build(BuildContext context) {
-    if (!picked) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const coolText(
-            text: "What To Cook",
-            fontSize: 14,
+    if (cool.detections[0] == "Loading") {
+      if (!picked) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const coolText(
+              text: "What To Cook",
+              fontSize: 14,
+            ),
           ),
-        ),
-        body: Center(
-            child: Column(
-          children: [
-            const Spacer(),
-            ExpandedButton(
-                onPressed: () {
-                  sendData();
-                },
-                text: "Take Photo",
-                flex: 2,
-                fontSize: 15,
-                width: 200),
-            const Spacer(),
-          ],
-        )),
-      );
+          body: Center(
+              child: Column(
+            children: [
+              const Spacer(),
+              const Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: coolText(
+                        text:
+                            "It is Recommended to take the Photo in Birds-eye-view",
+                        fontSize: 18),
+                  )),
+              const Spacer(
+                flex: 3,
+              ),
+              ExpandedButton(
+                  onPressed: () async {
+                    await sendData();
+                    setState(() {});
+                    print(cool.detections);
+                  },
+                  text: "Take Photo",
+                  flex: 2,
+                  fontSize: 15,
+                  width: 200),
+              const Spacer(),
+            ],
+          )),
+        );
+      } else {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
     } else {
       return Scaffold(
         appBar: AppBar(
@@ -109,12 +132,54 @@ class _CameraAppState extends State<CameraApp> {
             child: Column(
           children: [
             const Spacer(),
-            const coolText(text: "Data", fontSize: 15),
+            const coolText(text: "What we detected", fontSize: 18),
+            const Spacer(),
+            Expanded(
+              flex: 3,
+              child: ListView.builder(
+                itemCount: cool.detections.length,
+                itemBuilder: (context, index) {
+                  final item = cool.detections[index];
+                  return Expanded(
+                      flex: 1,
+                      child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: coolText(text: item, fontSize: 12)));
+                },
+              ),
+            ),
+            const Spacer(),
+            const coolText(text: "Results", fontSize: 18),
+            const Spacer(),
+            Expanded(
+              flex: 3,
+              child: ListView.builder(
+                itemCount: cool.results.length,
+                itemBuilder: (context, index) {
+                  final item = cool.results[index]["title"];
+                  if (cool.results[0]["title"] != "") {
+                    return Expanded(
+                        flex: 1,
+                        child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: coolText(text: item, fontSize: 12)));
+                  } else {
+                    return const Expanded(
+                        flex: 1,
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: coolText(text: "No Data", fontSize: 12)));
+                  }
+                },
+              ),
+            ),
             const Spacer(),
             ExpandedButton(
                 onPressed: () {
                   setState(() {
                     picked = false;
+                    cool.detections[0] = "Loading";
+                    cool.results[0] = "Loading";
                   });
                 },
                 text: "Take Photo Again",
