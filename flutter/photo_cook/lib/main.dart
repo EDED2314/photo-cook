@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:photo_cook/nav_bar.dart';
-import 'package:photo_cook/screens/home_page.dart';
 
-void main() {
+
+void main()  {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

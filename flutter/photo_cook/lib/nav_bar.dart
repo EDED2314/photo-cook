@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, use_key_in_widget_constructors, depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
+import 'package:photo_cook/screens/cam.dart';
 import 'package:photo_cook/screens/home_page.dart';
 import 'package:bottom_bar/bottom_bar.dart';
 import 'package:photo_cook/widgets/coolText.dart';
@@ -13,6 +14,7 @@ class Navbar extends StatefulWidget {
 class _Navbar extends State<Navbar> {
   int _currentPage = 0;
   final _pageController = PageController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class _Navbar extends State<Navbar> {
         controller: _pageController,
         children: const [
           MyHomePage(),
-          Center(child: Text("not implemented")),
+          CameraApp(),
           Center(child: Text("not implemented")),
           Center(child: Text("not implemented")),
         ],
