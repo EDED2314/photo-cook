@@ -36,4 +36,5 @@ def get_detections(IMAGE_PATH):
     bclasses = detections['detection_classes'][0].numpy().astype(np.int32)
     bscores = detections['detection_scores'][0].numpy()
     det_boxes, class_labels = ExtractBBoxes(bboxes, bclasses, bscores, im_width, im_height)
+
     return(class_labels)
