@@ -5,7 +5,6 @@ import 'package:photo_cook/screens/home_page.dart';
 import 'package:bottom_bar/bottom_bar.dart';
 import 'package:photo_cook/widgets/coolText.dart';
 
-
 class Navbar extends StatefulWidget {
   @override
   _Navbar createState() => _Navbar();
@@ -22,9 +21,9 @@ class _Navbar extends State<Navbar> {
         controller: _pageController,
         children: const [
           MyHomePage(),
-          Text("not implemented"),
-          Text("not implemented"),
-          Text("not implemented"),
+          Center(child: Text("not implemented")),
+          Center(child: Text("not implemented")),
+          Center(child: Text("not implemented")),
         ],
         onPageChanged: (index) {
           setState(() => _currentPage = index);
@@ -42,7 +41,7 @@ class _Navbar extends State<Navbar> {
             icon: const Icon(Icons.home),
             title: const coolText(
               text: 'Home',
-              fontSize: 12,
+              fontSize: 9,
             ),
             activeColor: Colors.blue,
             activeTitleColor: Colors.blue.shade600,
@@ -50,15 +49,15 @@ class _Navbar extends State<Navbar> {
           const BottomBarItem(
             icon: Icon(Icons.school),
             title: coolText(
-              text: 'Student Info',
-              fontSize: 10,
+              text: 'Not Implemted',
+              fontSize: 9,
             ),
             activeColor: Colors.red,
           ),
           BottomBarItem(
             icon: const Icon(Icons.text_fields_sharp),
             title: const coolText(
-              text: 'Text Scanner',
+              text: 'Not Implemted',
               fontSize: 9,
             ),
             backgroundColorOpacity: 0.1,
@@ -67,8 +66,8 @@ class _Navbar extends State<Navbar> {
           BottomBarItem(
             icon: const Icon(Icons.settings),
             title: const coolText(
-              text: 'Settings',
-              fontSize: 12,
+              text: 'Not Implemted',
+              fontSize: 9,
             ),
             activeColor: Colors.orange,
             activeIconColor: Colors.orange.shade600,
