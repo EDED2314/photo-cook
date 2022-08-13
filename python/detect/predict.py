@@ -22,19 +22,19 @@ def ExtractBBoxes(bboxes, bclasses, bscores, im_width, im_height):
     return (bbox, class_labels)
 
 
-IMAGE_PATH = os.path.join('test', 'DSC_3519.JPG')
+def get_detections(IMAGE_PATH):
 
-detect_fn = tf.saved_model.load("my_ssd_mobnet/export/saved_model")
+    detect_fn = tf.saved_model.load("my_ssd_mobnet/export/saved_model")
 
-image = tf.image.decode_image(open(IMAGE_PATH, 'rb').read(), channels=3)
-image = tf.image.resize(image, (180, 120))
-im_height, im_width, _ = image.shape
+    image = tf.image.decode_image(open(IMAGE_PATH, 'rb').read(), channels=3)
+    image = tf.image.resize(image, (180, 120))
+    im_height, im_width, _ = image.shape
 
-input_tensor = np.expand_dims(image, 0)
-detections = detect_fn(input_tensor)
+    input_tensor = np.expand_dims(image, 0)
+    detections = detect_fn(input_tensor)
 
-bboxes = detections['detection_boxes'][0].numpy()
-bclasses = detections['detection_classes'][0].numpy().astype(np.int32)
-bscores = detections['detection_scores'][0].numpy()
-det_boxes, class_labels = ExtractBBoxes(bboxes, bclasses, bscores, im_width, im_height)
-print(class_labels)
+    bboxes = detections['detection_boxes'][0].numpy()
+    bclasses = detections['detection_classes'][0].numpy().astype(np.int32)
+    bscores = detections['detection_scores'][0].numpy()
+    det_boxes, class_labels = ExtractBBoxes(bboxes, bclasses, bscores, im_width, im_height)
+    return(class_labels)
