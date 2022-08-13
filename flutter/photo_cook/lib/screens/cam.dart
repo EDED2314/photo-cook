@@ -24,7 +24,7 @@ class _CameraAppState extends State<CameraApp> {
       return Scaffold(
         appBar: AppBar(
           title: const coolText(
-            text: "Cooker",
+            text: "Find Recipes",
             fontSize: 14,
           ),
         ),
@@ -43,11 +43,13 @@ class _CameraAppState extends State<CameraApp> {
                         picked = true;
                       });
                     }
+                    final response = await http.get(Uri.parse(
+                        "https://photo-cooker.herokuapp.com/api/cook"));
 
                     http.MultipartRequest request = http.MultipartRequest(
                         'GET',
                         Uri.parse(
-                            "https://stackoverflow.com/questions/66579874/image-upload-in-flutter-using-http-post-method"));
+                            "https://photo-cooker.herokuapp.com/api/cook"));
 
                     request.files.add(
                       await http.MultipartFile.fromPath(
@@ -56,6 +58,9 @@ class _CameraAppState extends State<CameraApp> {
                       ),
                     );
                     http.StreamedResponse r = await request.send();
+                    print(request.headers);
+
+                    print(r.headers);
                     print(r.statusCode);
                     print(await r.stream.transform(utf8.decoder).join());
                   } catch (e) {

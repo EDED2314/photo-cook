@@ -26,7 +26,6 @@ class _Navbar extends State<Navbar> {
           MyHomePage(),
           CameraApp(),
           Search(),
-          Center(child: Text("not implemented")),
         ],
         onPageChanged: (index) {
           setState(() => _currentPage = index);
@@ -52,7 +51,7 @@ class _Navbar extends State<Navbar> {
           const BottomBarItem(
             icon: Icon(Icons.school),
             title: coolText(
-              text: 'Not Implemted',
+              text: 'What To Cook',
               fontSize: 9,
             ),
             activeColor: Colors.red,
@@ -60,21 +59,11 @@ class _Navbar extends State<Navbar> {
           BottomBarItem(
             icon: const Icon(Icons.text_fields_sharp),
             title: const coolText(
-              text: 'Not Implemted',
+              text: 'Find Recpies',
               fontSize: 9,
             ),
             backgroundColorOpacity: 0.1,
             activeColor: Colors.greenAccent.shade700,
-          ),
-          BottomBarItem(
-            icon: const Icon(Icons.settings),
-            title: const coolText(
-              text: 'Not Implemted',
-              fontSize: 9,
-            ),
-            activeColor: Colors.orange,
-            activeIconColor: Colors.orange.shade600,
-            activeTitleColor: Colors.orange.shade700,
           ),
         ],
       ),

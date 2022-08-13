@@ -32,10 +32,14 @@ class _Search extends State<Search> {
             ExpandedButton(
                 onPressed: () async {
                   try {
+                    setState(() {
+                      picked = true;
+                    });
+
                     http.MultipartRequest request = http.MultipartRequest(
                         'GET',
                         Uri.parse(
-                            "https://stackoverflow.com/questions/66579874/image-upload-in-flutter-using-http-post-method"));
+                            "https://photo-cooker.herokuapp.com/api/cook"));
 
                     http.StreamedResponse r = await request.send();
                     print(r.statusCode);
