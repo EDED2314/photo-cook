@@ -8,9 +8,24 @@
 <div>
     <img src="./static/logo.png" alt="Logo">
 </div>
-<head>
+<h1>
     Welcome to photo-cook's website!
-</head>
+</h1>
+<h2>
+    Documentation:
+</h2>
+<ul>
+    API root link: <a href="https://photo-cooker.herokuapp.com/api">photo-cooker.herokuapp.com/api</a>
+    <br>
+    Image and recipe recommendation api: <a href="https://photo-cooker.herokuapp.com/api/cook">https://photo-cooker.herokuapp.com/api/cook</a>
+    <ul>
+        Parameters:
+        <li><code>{"Image": image}</code></li>
+        Response:
+        <li>Results list with all the recipes as a dictionary - example dictionary: <code>{'id', 'title', 'image', 'imageType'}</code></li>
+        <li>Results list with all the detected foods: <code>['tomato', ...]</code></li>
+    </ul>
+</ul>
 
 
 </body>
