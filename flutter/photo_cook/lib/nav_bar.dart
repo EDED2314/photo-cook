@@ -43,24 +43,24 @@ class _Navbar extends State<Navbar> {
             icon: const Icon(Icons.home),
             title: const coolText(
               text: 'Home',
-              fontSize: 9,
+              fontSize: 12,
             ),
             activeColor: Colors.blue,
             activeTitleColor: Colors.blue.shade600,
           ),
           const BottomBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.question_mark_sharp),
             title: coolText(
               text: 'What To Cook',
-              fontSize: 9,
+              fontSize: 11,
             ),
             activeColor: Colors.red,
           ),
           BottomBarItem(
-            icon: const Icon(Icons.text_fields_sharp),
+            icon: const Icon(Icons.search),
             title: const coolText(
               text: 'Find Recpies',
-              fontSize: 9,
+              fontSize: 11,
             ),
             backgroundColorOpacity: 0.1,
             activeColor: Colors.greenAccent.shade700,

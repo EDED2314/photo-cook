@@ -6,6 +6,8 @@ import 'package:photo_cook/widgets/coolButtion.dart';
 import 'package:photo_cook/widgets/coolText.dart';
 import 'package:http/http.dart' as http;
 
+import 'http.dart';
+
 class CameraApp extends StatefulWidget {
   /// Default Constructor
   const CameraApp({Key? key}) : super(key: key);
@@ -17,14 +19,14 @@ class CameraApp extends StatefulWidget {
 class _CameraAppState extends State<CameraApp> {
   XFile? imageFile;
   bool picked = false;
-
+  Data cool = const Data(detections: ["Loading"], results: ["Loading"]);
   @override
   Widget build(BuildContext context) {
     if (!picked) {
       return Scaffold(
         appBar: AppBar(
           title: const coolText(
-            text: "Find Recipes",
+            text: "What To Cook",
             fontSize: 14,
           ),
         ),
@@ -43,13 +45,9 @@ class _CameraAppState extends State<CameraApp> {
                         picked = true;
                       });
                     }
-                    final response = await http.get(Uri.parse(
-                        "https://photo-cooker.herokuapp.com/api/cook"));
-
                     http.MultipartRequest request = http.MultipartRequest(
-                        'GET',
-                        Uri.parse(
-                            "https://photo-cooker.herokuapp.com/api/cook"));
+                        'POST',
+                        Uri.parse("http://192.168.0.133:5000/api/cook"));
 
                     request.files.add(
                       await http.MultipartFile.fromPath(
@@ -58,11 +56,9 @@ class _CameraAppState extends State<CameraApp> {
                       ),
                     );
                     http.StreamedResponse r = await request.send();
-                    print(request.headers);
-
-                    print(r.headers);
-                    print(r.statusCode);
-                    print(await r.stream.transform(utf8.decoder).join());
+                    final response = await http
+                        .get(Uri.parse('http://192.168.0.133:5000/api/cook'));
+                    cool = Data.fromJson(jsonDecode(response.body));
                   } catch (e) {
                     imageFile = null;
                     if (mounted) {

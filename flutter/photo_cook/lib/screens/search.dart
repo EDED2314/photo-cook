@@ -21,7 +21,7 @@ class _Search extends State<Search> {
       return Scaffold(
         appBar: AppBar(
           title: const coolText(
-            text: "Cooker",
+            text: "Find Recipes",
             fontSize: 14,
           ),
         ),
@@ -32,28 +32,33 @@ class _Search extends State<Search> {
             ExpandedButton(
                 onPressed: () async {
                   try {
-                    setState(() {
-                      picked = true;
-                    });
-
                     http.MultipartRequest request = http.MultipartRequest(
                         'GET',
                         Uri.parse(
-                            "https://photo-cooker.herokuapp.com/api/cook"));
+                            "http://192.168.0.133:5000/api/cook"));
 
                     http.StreamedResponse r = await request.send();
-                    print(r.statusCode);
-                    print(await r.stream.transform(utf8.decoder).join());
-                  } catch (e) {
+                    // print(r.statusCode);
+                    // print(await r.stream.transform(utf8.decoder));
+                    var cool = await r.stream.transform(utf8.decoder).join();
+                    for (var i = 0; i > cool.length; i++) {
+                      print(cool[i]);
+                      print(
+                          "____________________________________________________________________ 11");
+
+                    }
+                  } catch (apiError) {
                     if (mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: coolText(
-                          text: e.toString(),
+                          text: "Api Error" + apiError.toString(),
                           fontSize: 5,
                         ),
                       ));
                     }
                   }
+                  picked = true;
+                  setState(() {});
                 },
                 text: "Send",
                 flex: 2,
