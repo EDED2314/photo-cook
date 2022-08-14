@@ -21,12 +21,20 @@ def process_image_get_detections():
             image.save(os.path.join("Images", f"{amount_of_images + 1}.jpg"))
             return ""
     elif request.method == "GET":
+        copy_response = {}
         amount_of_images = len(os.listdir("Images"))
         class_labels = get_detections(os.path.join("Images", f"{amount_of_images}.jpg"))
-
         response = send(class_labels)
-        response['detections'] = class_labels
 
+        for result in response['results']:
+            idd = result['id']
+            title = result['title']
+            title = title.replace(" ", "-")
+            idx = response['results'].index(result)
+            response['results'][idx]["url"] = "https://spoonacular.com/recipes/"+title + f"-{idd}"
+
+        response['detections'] = class_labels
+        print(response)
         return jsonify(response)
 
 if __name__ == '__main__':
