@@ -46,7 +46,7 @@ create another script to resize the images into (180x120) and then handle label 
 - Much smaller bugs involving flutter and tensorflow version control
 ## Accomplishments that we're proud of
 
-- We successfully trained an object detection model
+- We successfully trained an object detection model to an accuracy of 80-90% under correct conditions
 - We successfully coded an api and flutter communication system
 
 ## What we learned
