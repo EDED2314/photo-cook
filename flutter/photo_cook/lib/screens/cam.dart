@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_cook/widgets/coolButtion.dart';
 import 'package:photo_cook/widgets/coolText.dart';
@@ -161,20 +163,32 @@ class _CameraAppState extends State<CameraApp> {
                     itemBuilder: (context, index) {
                       final item = cool.results[index]["title"];
                       final image = cool.results[index]["image"];
+                      final url = cool.results[index]["url"];
                       if (cool.results[0]["title"] != null) {
                         return Expanded(
                             flex: 1,
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(5),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 60),
                                   child: coolText(text: item, fontSize: 12),
                                 ),
                                 Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Expanded(
-                                      flex: 1,
-                                      child: Image.network(image),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 60),
+                                  child: Image.network(image),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 60),
+                                    child: TextButton(
+                                      child: coolText(text: url, fontSize: 12),
+                                      onPressed: () async {
+                                        ClipboardData data =
+                                            ClipboardData(text: url);
+                                        await Clipboard.setData(data);
+                                      },
                                     )),
                               ],
                             ));
