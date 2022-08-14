@@ -170,26 +170,30 @@ class _CameraAppState extends State<CameraApp> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 60),
-                                  child: coolText(text: item, fontSize: 12),
-                                ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 60),
+                                    child: TextButton(
+                                      child: coolText(text: item, fontSize: 12),
+                                      onPressed: () async {
+                                        ClipboardData data =
+                                            ClipboardData(text: url);
+                                        await Clipboard.setData(data);
+                                        if (mounted) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                            content: coolText(
+                                              text: "Copied Link",
+                                              fontSize: 12,
+                                            ),
+                                          ));
+                                        }
+                                      },
+                                    )),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 60),
                                   child: Image.network(image),
                                 ),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 60),
-                                    child: TextButton(
-                                      child: coolText(text: url, fontSize: 12),
-                                      onPressed: () async {
-                                        ClipboardData data =
-                                            ClipboardData(text: url);
-                                        await Clipboard.setData(data);
-                                      },
-                                    )),
                               ],
                             ));
                       } else {
